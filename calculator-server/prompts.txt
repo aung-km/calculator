@@ -1,0 +1,7 @@
+I have an existing FastAPI calculator server whose application is app.main:app. It must keep its current calculator and history routes, run on 0.0.0.0:5000, and connect to MySQL through a DATABASE_URL environment variable. Confirm that you understand this project before generating configuration.
+
+Generate a Dockerfile and .dockerignore for the FastAPI server. Build from the project root, install the locked requirements.txt with pip, expose port 5000, and run app.main:app with Uvicorn on 0.0.0.0:5000.
+
+Generate compose.yaml with a backend built from the project root and published as 34242:5000. Bind mount ./app:/app/app. Add a database service using mysql:8.4 with database appdb, user appuser, application password classroom-app, a dbdata:/var/lib/mysql named volume, and optional host binding 127.0.0.1:54242:3306. Add a MySQL health check, make the backend depend on condition: service_healthy, and set DATABASE_URL to mysql+mysqlconnector://appuser:classroom-app@database:3306/appdb.
+
+Show how to add a SQLAlchemy engine configured by DATABASE_URL and a GET /test-db route that executes SELECT 1 and returns {"db_result": 1} inside the existing FastAPI application without replacing any calculator routes or creating a second FastAPI app.
